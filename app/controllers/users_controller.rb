@@ -5,6 +5,31 @@ class UsersController < ApplicationController
 	def home
 	end
 
+	def new
+		@user = UserCustomer.new
+	end
+
+	def create
+		@user = UserCustomer.new(user_params)
+		if @user.save
+			#For now sending mail to single employee
+			#We can loop email and send mail to all employees and can run it as delayed Job
+			#NotificationMailer.notification_mailer(@employee).deliver
+			redirect_to users_path
+		else
+			flash.now.alert = "Email Already Taken"
+			render 'new'
+		end
+	end
+
+	def show
+		@user = UserCustomer.find(params[:id])
+	end
+
+	def index
+		@user = UserCustomer.all
+	end
+
 	def verify_login
 		if !current_user
 			if params[:user] && params[:user][:email] && params[:user][:password]
@@ -20,12 +45,21 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def new
+	def destroy_login
+		session[:user_id] = nil
+		redirect_to root_url, :notice => "Logged out!"
 	end
 
-	def index
+
+
+
+	private
+	
+	def user_params
+		params.require(:user).permit(:name, :email, :password)
 	end
 
-	def show
-	end
+
+
+
 end

@@ -1,35 +1,48 @@
 <div class="login-wrap">
 	<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Sign In</label>
 		<div class="login-form">
-			<%= form_for :user do |f| %>
+			<%= form_tag(users_path, method: "new") do %>
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="user" class="label">Email</label>
-					<%= f.email_field :email, class: "input", autofocus: true, autocomplete: "email" %>
+					<label for="user" class="label">Name</label>
+					<%= text_field_tag "user[name]","",{class: "input"} %>
 				</div>
+				<div class="group">
+					<label for="user" class="label">Email</label>
+					<%= text_field_tag "user[email]","",{class: "input"} %>
+				</div>
+				<!-- <div class="group">
+					<label for="user" class="label">Phone</label>
+					<%#= text_field_tag "user[phone]","",{class: "input"} %>
+				</div> -->
 				<div class="group">
 					<label for="pass" class="label">Password</label>
-					<%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+					<%= password_field_tag "user[password]","",{class: "input"} %>
 				</div>
 				<div class="group">
-					<%= f.submit "Log in", class: "button" %>
+					<%= submit_tag "Sign Up", {class: "button"} %>
 				</div>
 				<div class="hr"></div>
 			</div>
 			<%end%>
 			<div class="for-pwd-htm">
+				<%= form_tag(users_path, method: "get") do %>
 				<div class="group">
 					<label for="user" class="label">Email</label>
-					<input id="user" type="text" class="input">
+					<%= text_field_tag "user[email]","",{class: "input"} %>
 				</div>
 				<div class="group">
-					<input type="submit" class="button" value="Reset Password">
+					<label for="user" class="label">Password</label>
+					<%= password_field_tag "user[password]","",{class: "input"} %>
 				</div>
+				<div class="group">
+					<%= submit_tag "Sign In", {class: "button"} %>
+				</div>
+				<%end%>
 				<div class="hr"></div>
-			</div>
-			
+			</div>	
 		</div>
 	</div>
 </div>
