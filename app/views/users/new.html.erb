@@ -6,7 +6,7 @@
 			<%= form_for :user do |f| %>
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="user" class="label">Username or Email</label>
+					<label for="user" class="label">Email</label>
 					<%= f.email_field :email, class: "input", autofocus: true, autocomplete: "email" %>
 				</div>
 				<div class="group">
@@ -18,9 +18,10 @@
 				</div>
 				<div class="hr"></div>
 			</div>
+			<%end%>
 			<div class="for-pwd-htm">
 				<div class="group">
-					<label for="user" class="label">Username or Email</label>
+					<label for="user" class="label">Email</label>
 					<input id="user" type="text" class="input">
 				</div>
 				<div class="group">
@@ -28,7 +29,7 @@
 				</div>
 				<div class="hr"></div>
 			</div>
-			<%end%>
+			
 		</div>
 	</div>
 </div>
