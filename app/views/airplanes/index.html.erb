@@ -1,0 +1,26 @@
+<div class="container">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">category</th>
+      <th scope="col">Seats</th>
+      <th scope="col">Rows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @airplanes.each_with_index do |airplane,index| %>
+    <tr>
+      <th scope="row"><%=index+1%></th>
+      <td><%= airplane.name if airplane.name%></td>
+      <td><%= airplane.category if airplane.category %></td>
+      <td><%= airplane.seats if airplane.seats %></td>
+      <td><%= airplane.rows if airplane.rows %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<%= link_to "New Flight", new_airplane_path, :class => 'btn btn-success pull-right' %>
+</div>

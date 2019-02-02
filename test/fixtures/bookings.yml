@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pnr: MyString
+  origin: MyString
+  destination: MyString
+  price: 9.99
+  airplane: one
+
+two:
+  pnr: MyString
+  origin: MyString
+  destination: MyString
+  price: 9.99
+  airplane: two

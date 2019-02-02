@@ -1,3 +1,7 @@
-<p class="text-primary text-center">Flights - New Year Eve - 2019</p>
-<p class=" text-info py-5 text-center"><strong>Welocome to Flight planner! You can book here flights available with us at affordable price.</strong> </p>
-<p class="text-primary text-center"><%= link_to "New Booking", users_path, :class => 'btn btn-info' %></p>
+<p class="text-dark py-5 text-center">Flights - New Year Eve - 2019</p>
+<p class="text-dark py-5 text-center"><strong>Welocome to Flight planner! You can book here flights available with us at affordable price.</strong> </p>
+<%if current_user && current_user.type == "UserAdmin"%>
+<p class="text-primary text-center"><%= link_to "New Flight", new_airplane_path, :class => 'btn btn-success' %></p>
+<%else%>
+<p class="text-primary text-center"><%= link_to "New Booking", new_airplane_path, :class => 'btn btn-success' %></p>
+<%end%>
