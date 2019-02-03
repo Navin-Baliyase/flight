@@ -28,7 +28,8 @@ class AirplanesController < ApplicationController
 		if @airplane
 			@booking = Booking.create!(booking_params)
 			if @booking.save
-				flash.now.notice = "Your booking was successfull"
+				NotificationMailer.notification_mailer(@booking,@airplane,current_user).deliver
+				flash.now.notice = "Your booking was successfull, An email has been sent to you with the booking details."
 			else
 				flash.now.alert = "Seats are already filled"
 				redirect_to root_path
