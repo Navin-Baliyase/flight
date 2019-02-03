@@ -1,26 +1,41 @@
 <div class="container">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">category</th>
-      <th scope="col">Seats</th>
-      <th scope="col">Rows</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @airplanes.each_with_index do |airplane,index| %>
-    <tr>
-      <th scope="row"><%=index+1%></th>
-      <td><%= airplane.name if airplane.name%></td>
-      <td><%= airplane.category if airplane.category %></td>
-      <td><%= airplane.seats if airplane.seats %></td>
-      <td><%= airplane.rows if airplane.rows %></td>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
-
-<%= link_to "New Flight", new_airplane_path, :class => 'btn btn-success pull-right' %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">category</th>
+        <th scope="col">Source</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Price</th>
+        <%if current_user %>
+        <th scope="col">Book</th>
+        <%end%>
+      </tr>
+    </thead>
+    <tbody>
+      <% @airplanes.each_with_index do |airplane,index| %>
+      <tr>
+        <th scope="row"><%=index+1%></th>
+        <td><%= airplane.name if airplane.name%></td>
+        <td><%= airplane.category if airplane.category %></td>
+        <td><%= airplane.source if airplane.source %></td>
+        <td><%= airplane.destination if airplane.destination %></td>
+        <td><%= airplane.price if airplane.price %></td>
+        <%if current_user%>
+        <td>
+          <%= link_to "Book Now", airplane_path(airplane), :class => 'btn btn-success pull-right' %>
+        </td>
+        <%end%>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <%if current_user && current_user.type == "UserAdmin"%>
+  <%= link_to "New Flight", new_airplane_path, :class => 'btn btn-success pull-right' %>
+  <%end%>
+  <%if !current_user%>
+  <p class="text-warning text-center"><strong>Please login to book flights.</strong> <%= link_to "Login", login_path, :class => 'btn btn-success pull-center' %></p>
+  
+  <%end%>
 </div>

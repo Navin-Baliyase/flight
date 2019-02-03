@@ -9,6 +9,7 @@
   <%= stylesheet_link_tag 'application', '/stylesheets/flight.css' %>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
@@ -27,31 +28,35 @@
           <li>
             <% if current_user %>
             <span class="text-white">
-            Logged in as <strong><%= current_user.email %></strong></span> |
-            <%= link_to "Logout", logout_path, :class => 'navbar-link' %> |
-            <%if current_user.type == "UserAdmin"%>
-            <%= link_to "New Flight", airplanes_path, :class => 'navbar-link' %>
-            <%else%>
-            <%= link_to "Book Tickets", airplanes_path, :class => 'navbar-link' %>
-            <%end%>
-            <% else %>
-            <%= link_to "Login", login_path, :class => 'navbar-link' %> |
-            <%= link_to "Sign Up", new_user_path, :class => 'navbar-link' %>
-            <% end %>
+              <%if current_user.type == "UserAdmin"%>
+              Welcome Admin : <strong><%= current_user.email %></strong></span> |
+              <%else%>
+              Logged in as <strong><%= current_user.email %></strong></span> |
+              <%end%>
+              <%= link_to "Logout", logout_path, :class => 'navbar-link' %> |
+              <%if current_user.type == "UserAdmin"%>
+              <%= link_to "New Flight", airplanes_path, :class => 'navbar-link' %>
+              <%else%>
+              <%= link_to "Book Tickets", airplanes_path, :class => 'navbar-link' %>
+              <%end%>
+              <% else %>
+              <%= link_to "Login", login_path, :class => 'navbar-link' %> |
+              <%= link_to "Sign Up", new_user_path, :class => 'navbar-link' %>
+              <% end %>
             </li>
-            </ul>
-          </div>
+          </ul>
         </div>
-      </nav>
-      <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-      <%= yield %>
-      <div class="foot-lnk">
-        <p>Developed by : <a href="mailto:navinkumar2508@gmail.com"><strong>navinkumar2508@gmail.com</strong></a></p>
       </div>
-    </body>
-    </html>
+    </nav>
+    <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+    <div class="foot-lnk">
+      <p>Developed by : <a href="mailto:navinkumar2508@gmail.com"><strong>navinkumar2508@gmail.com</strong></a></p>
+    </div>
+  </body>
+  </html>

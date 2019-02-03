@@ -15,9 +15,9 @@ class UsersController < ApplicationController
 			#For now sending mail to single employee
 			#We can loop email and send mail to all employees and can run it as delayed Job
 			#NotificationMailer.notification_mailer(@employee).deliver
-			redirect_to users_path
+			redirect_to login_path, :notice => "You successfully Signed up, Please login to continue!"
 		else
-			flash.now.alert = "Email Already Taken"
+			flash.now.alert = "Email Already Taken" 
 			render 'new'
 		end
 	end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 			end
 			if @user
 				session[:user_id] = @user.id
-				redirect_to users_url, :notice => "Logged in!"
+				redirect_to airplanes_url, :notice => "Logged in!"
 			else
 				flash.now.alert = "Invalid email or password" if params[:user]
 				render "verify_login"
@@ -50,16 +50,10 @@ class UsersController < ApplicationController
 		redirect_to root_url, :notice => "Logged out!"
 	end
 
-
-
-
 	private
 	
 	def user_params
 		params.require(:user).permit(:name, :email, :password)
 	end
-
-
-
 
 end

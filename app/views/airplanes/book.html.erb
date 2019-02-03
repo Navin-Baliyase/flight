@@ -1,0 +1,48 @@
+<div class="container">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Details</th>
+				<th scope="col">Provided Info</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Customer Name</td>
+				<td><%= @booking.name if @booking.name %></td>
+			</tr>
+			<tr>
+				<td>Customer Age</td>
+				<td><%= @booking.age if @booking.age %></td>
+			</tr>
+			<tr>
+				<td>Customer ID</td>
+				<td><%= @booking.passport_id if @booking.passport_id %></td>
+			</tr>
+			<tr>
+				<td>PNR</td>
+				<td><%= @booking.pnr if @booking.pnr %></td>
+			</tr>
+			<tr>
+				<td>Airline</td>
+				<td><%= @airplane.name if @airplane.name %></td>
+			</tr>
+			<tr>
+				<td>category</td>
+				<td><%= @airplane.category if @airplane.category %></td>
+			</tr>
+			<tr>
+				<td>Booked From</td>
+				<td><%= @airplane.source if @airplane.source %></td>
+			</tr>
+			<tr>
+				<td>Booked Upto</td>
+				<td><%= @airplane.destination if @airplane.destination %></td>
+			</tr>
+			<tr>
+				<td>Amount Paid</td>
+				<td><%= @airplane.price if @airplane.price %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

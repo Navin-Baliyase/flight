@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_160157) do
+ActiveRecord::Schema.define(version: 2019_02_03_062131) do
 
   create_table "airplanes", force: :cascade do |t|
     t.string "name"
@@ -19,18 +19,13 @@ ActiveRecord::Schema.define(version: 2019_02_01_160157) do
     t.string "rows"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "source"
+    t.string "destination"
+    t.float "price"
   end
 
-  create_table "bookings", force: :cascade do |t|
-    t.string "pnr"
-    t.string "origin"
-    t.string "destination"
-    t.decimal "price"
-    t.integer "airplane_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["airplane_id"], name: "index_bookings_on_airplane_id"
-  end
+# Could not dump table "bookings" because of following StandardError
+#   Unknown type '' for column 'status'
 
   create_table "users", force: :cascade do |t|
     t.string "name"

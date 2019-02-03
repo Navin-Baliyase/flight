@@ -1,6 +1,7 @@
 class AirplanesController < ApplicationController
 	protect_from_forgery
-  def new
+
+	def new
 		@airplane = Airplane.new
 	end
 
@@ -14,13 +15,37 @@ class AirplanesController < ApplicationController
 		end
 	end
 
-  def index
-  	@airplanes = Airplane.all
-  end
+	def index
+		@airplanes = Airplane.all
+	end
 
-  private
+	def show
+		@airplane = Airplane.find(params[:id])
+	end
+
+	def book
+		@airplane = Airplane.find(params[:booking][:airplane_id])
+		if @airplane
+			@booking = Booking.create!(booking_params)
+			if @booking.save
+				flash.now.notice = "Your booking was successfull"
+			else
+				flash.now.alert = "Seats are already filled"
+				redirect_to root_path
+			end
+		else
+			flash.now.alert = "Flight has been chancelled"
+			redirect_to root_path
+		end
+	end
+
+	private
 	
 	def airplane_params
-		params.require(:airplane).permit(:name, :category, :seats, :rows)
+		params.require(:airplane).permit(:name, :category, :seats, :rows, :source, :destination, :price)
+	end
+
+	def booking_params
+		params.require(:booking).permit(:name, :status, :airplane_id, :pnr, :passport_id, :passenger1, :passenger2, :age)
 	end
 end

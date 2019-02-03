@@ -3,20 +3,32 @@
 		<%= form_tag(airplanes_path, method: "new") do %>
 		<div class="sign-in-htm">
 			<div class="group">
-				<label for="airplane" class="label">Name</label>
+				<label for="name" class="label">Name</label>
 				<%= text_field_tag "airplane[name]","",{class: "input"} %>
 			</div>
 			<div class="group">
-				<label for="airplane" class="label">Category</label>
+				<label for="category" class="label">Category</label>
 				<%= text_field_tag "airplane[category]","",{class: "input"} %>
 			</div>
 			<div class="group">
-				<label for="pass" class="label">Seats</label>
+				<label for="seats" class="label">Seats</label>
 				<%= text_field_tag "airplane[seats]","",{class: "input"} %>
 			</div>
 			<div class="group">
-				<label for="pass" class="label">Rows</label>
+				<label for="rows" class="label">Rows</label>
 				<%= text_field_tag "airplane[rows]","",{class: "input"} %>
+			</div>
+			<div class="group">
+				<label for="source" class="label">Source</label>
+				<%= text_field_tag "airplane[source]","",{class: "input"} %>
+			</div>
+			<div class="group">
+				<label for="destination" class="label">Destination</label>
+				<%= text_field_tag "airplane[destination]","",{class: "input"} %>
+			</div>
+			<div class="group">
+				<label for="price" class="label">Price</label>
+				<%= text_field_tag "airplane[price]","",{class: "input"} %>
 			</div>
 			<div class="group">
 				<%= submit_tag "Create", {class: "button"} %>
