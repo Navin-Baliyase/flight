@@ -16,39 +16,43 @@
 <body>
   <!-- Navigation -->
   <div class="menu">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <p>Navin's Flight</p>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            <% if current_user %>
-            <span class="text-white">
-              <%if current_user.type == "UserAdmin"%>
-              Welcome Admin : <strong><%= current_user.email %></strong></span> |
-              <%else%>
-              Logged in as <strong><%= current_user.email %></strong></span> |
-              <%end%>
-              <%= link_to "Logout", logout_path, :class => 'navbar-link' %> |
-              <%if current_user.type == "UserAdmin"%>
-              <%= link_to "New Flight", airplanes_path, :class => 'navbar-link' %>
-              <%else%>
-              <%= link_to "Book Tickets", airplanes_path, :class => 'navbar-link' %>
-              <%end%>
-              <% else %>
-              <%= link_to "Login", login_path, :class => 'navbar-link' %> |
-              <%= link_to "Sign Up", new_user_path, :class => 'navbar-link' %>
-              <% end %>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <p>Navin's Flight</p>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <%= form_tag(search_path, method: "get") do %>
+        <%#= text_field_tag "search","",{placeholder: "Search.."} %>
+        <%= text_field_tag :search, params[:search] %>
+        <%end%>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li>
+              <% if current_user %>
+              <span class="text-white">
+                <%if current_user.type == "UserAdmin"%>
+                Welcome Admin : <strong><%= current_user.email %></strong></span> |
+                <%else%>
+                Logged in as <strong><%= current_user.email %></strong></span> |
+                <%end%>
+                <%= link_to "Logout", logout_path, :class => 'navbar-link' %> |
+                <%if current_user.type == "UserAdmin"%>
+                <%= link_to "New Flight", airplanes_path, :class => 'navbar-link' %>
+                <%else%>
+                <%= link_to "Book Tickets", airplanes_path, :class => 'navbar-link' %>
+                <%end%>
+                <% else %>
+                <%= link_to "Login", login_path, :class => 'navbar-link' %> |
+                <%= link_to "Sign Up", new_user_path, :class => 'navbar-link' %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     </div>
     <% if notice %>
     <p class="alert alert-success"><%= notice %></p>

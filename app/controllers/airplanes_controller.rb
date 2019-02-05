@@ -40,13 +40,28 @@ class AirplanesController < ApplicationController
 		end
 	end
 
-	private
-	
-	def airplane_params
-		params.require(:airplane).permit(:name, :category, :seats, :rows, :source, :destination, :price)
-	end
 
-	def booking_params
-		params.require(:booking).permit(:name, :status, :airplane_id, :pnr, :passport_id, :passenger1, :passenger2, :age)
-	end
+	def ticket
+		respond_to do |format|
+			format.html
+			format.pdf do
+        render pdf: "ticket"   # Excluding ".pdf" extension.
+    end
+end
+end
+
+def search
+	@airplanes = Airplane.search(params[:search])
+end
+
+
+private
+
+def airplane_params
+	params.require(:airplane).permit(:name, :category, :seats, :rows, :source, :destination, :price)
+end
+
+def booking_params
+	params.require(:booking).permit(:name, :status, :airplane_id, :pnr, :passport_id, :passenger1, :passenger2, :age)
+end
 end
