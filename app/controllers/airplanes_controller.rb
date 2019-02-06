@@ -30,6 +30,9 @@ class AirplanesController < ApplicationController
 			if @booking.save
 				NotificationMailer.notification_mailer(@booking,@airplane,current_user).deliver
 				flash.now.notice = "Your booking was successfull, An email has been sent to you with the booking details."
+				if @airplane.seats*50/100 < @airplane.bookings.count
+			       @airplane.update_columns(price: @airplane.price + @airplane.price*10/100) 
+			    end
 			else
 				flash.now.alert = "Seats are already filled"
 				redirect_to root_path
