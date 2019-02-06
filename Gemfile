@@ -10,7 +10,10 @@ gem "letter_opener", :group => :development
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'
 # Use ActiveModel has_secure_password
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+#dummy data creation
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

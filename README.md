@@ -8,8 +8,13 @@ Flight booking web application.
 #Gems Used
 1. letter_opner - to view mails in browser
 2. bcrypt - to authenticate
+3. faker - dummy data
 
 
 #Note
-Will add seed file soon.. with faker gem data
+Seed file added and fake data can be created using faker gem
+run : rails db:seed
+Admin User
+email: dummy@flight.com
+password: dummy123
 
